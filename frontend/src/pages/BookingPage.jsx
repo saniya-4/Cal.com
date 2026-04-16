@@ -137,31 +137,92 @@ function BookingPage() {
   };
 
   const generatedSlots = generateTimeSlots(selectedDate);
+//     const handleBooking = async () => {
+//   try {
+//     const res = await axios.post(
+//       `${import.meta.env.VITE_API_URL}/api/book`,
+//       {
+//         eventId: event.id,
+//         name,
+//         email,
+//         date: selectedDate.toISOString().split("T")[0],
+//         startTime: selectedSlot.start,
+//         endTime: selectedSlot.end,
+//       }
+//     );
 
-   const handleBooking = async () => {
+//     console.log("RESPONSE:", res.data);
+
+//     // 🔥 IMPORTANT
+//     if (res.status === 200) {
+//       setBookingSuccess(true);
+//     }
+
+//   } catch (err) {
+//     console.error("BOOKING ERROR:", err);
+//     alert("Something went wrong");
+//   }
+// };
+//    const handleBooking = async () => {
+//   try {
+//     const dateStr = selectedDate.toISOString().split("T")[0];
+
+//     await axios.post(
+//       `${import.meta.env.VITE_API_URL}/api/book`,
+//       {
+//         eventId: event.id,
+//         name,
+//         email,
+//         date: dateStr,
+//         startTime: selectedSlot.start,
+//         endTime: selectedSlot.end,
+//       }
+//     );
+
+//     alert("✅ Booking successful! Email sent");
+//     setBookingSuccess(true);
+//   } catch (err) {
+//     console.error("BOOKING ERROR:", err);
+//     alert(err.response?.data?.message || "Error booking");
+//   }
+// };
+  // 🔥 CALENDAR
+  const handleBooking = async () => {
+  console.log("CLICKED CONFIRM");
+
+  if (!event || !selectedSlot) {
+    alert("Something missing (event/slot)");
+    return;
+  }
+
+  if (!name || !email) {
+    alert("Please fill all fields");
+    return;
+  }
+
   try {
-    const dateStr = selectedDate.toISOString().split("T")[0];
-
-    await axios.post(
+    const res = await axios.post(
       `${import.meta.env.VITE_API_URL}/api/book`,
       {
         eventId: event.id,
         name,
         email,
-        date: dateStr,
+        date: selectedDate.toISOString().split("T")[0],
         startTime: selectedSlot.start,
         endTime: selectedSlot.end,
       }
     );
 
-    alert("✅ Booking successful! Email sent");
+    console.log("RESPONSE:", res.data);
+
+    // 🔥 ALWAYS trigger UI change
     setBookingSuccess(true);
+
   } catch (err) {
     console.error("BOOKING ERROR:", err);
-    alert(err.response?.data?.message || "Error booking");
+    alert("Booking failed");
   }
 };
-  // 🔥 CALENDAR
   const getDays = () => {
     const year = currentMonth.getFullYear();
     const month = currentMonth.getMonth();
