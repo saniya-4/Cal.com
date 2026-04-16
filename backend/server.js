@@ -11,10 +11,11 @@ const AvailabilitySlot = require("./models/AvailabilitySlot");
 const PORT = process.env.PORT || 5000;
 const bookingRoutes = require("./routes/bookingRoutes");
 app.use(cors());
+app.use(express.json());
 app.get("/", (req, res) => {
   res.json({ message: "Backend is running with Express.js" });
 });
-app.use(express.json());
+
 app.use("/api/events", eventRoutes);
 app.use("/api/availability", availabilityRoutes);
 app.use("/api/book", bookingRoutes);
