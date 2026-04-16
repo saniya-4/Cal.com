@@ -49,8 +49,12 @@ for (let i = 1; i <= 5; i++) {
 await AvailabilitySlot.bulkCreate(slots);
 
     res.status(201).json(event);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
+  } 
+    catch (err) {
+  console.error("CREATE EVENT ERROR:", err);  // 👈 ADD THIS
+  res.status(500).json({ error: err.message });
+
+    
   }
 };
 
@@ -64,6 +68,7 @@ exports.getEvents = async (req, res) => {
 
     res.json(events);
   } catch (err) {
+    console.error("GET EVENTS ERROR:", err); 
     res.status(500).json({ error: err.message });
   }
 };

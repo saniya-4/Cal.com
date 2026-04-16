@@ -1,5 +1,5 @@
 const { DataTypes } = require("sequelize");
-const sequelize = require("../config/db");   // ⚠️ use your actual export
+const sequelize = require("../config/db");
 
 const Availability = sequelize.define("Availability", {
   eventId: {
@@ -11,6 +11,7 @@ const Availability = sequelize.define("Availability", {
     defaultValue: "Asia/Kolkata",
   },
 }, {
+  tableName: "availabilities",   // ✅ FIX
   timestamps: true
 });
 

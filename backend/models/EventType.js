@@ -1,5 +1,5 @@
 const { DataTypes } = require("sequelize");
-const sequelize = require("../config/db"); // your file
+const sequelize = require("../config/db");
 
 const EventType = sequelize.define("EventType", {
   id: {
@@ -27,6 +27,9 @@ const EventType = sequelize.define("EventType", {
     type: DataTypes.BOOLEAN,
     defaultValue: true,
   },
+}, {
+  tableName: "eventtypes",   // ✅ IMPORTANT FIX
+  timestamps: true
 });
 
 module.exports = EventType;

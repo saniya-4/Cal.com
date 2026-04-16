@@ -19,6 +19,7 @@ const AvailabilitySlot = sequelize.define("AvailabilitySlot", {
     allowNull: false,
   },
 }, {
+  tableName: "availabilityslots",   // ✅ IMPORTANT FIX
   timestamps: true
 });
 

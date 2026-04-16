@@ -19,17 +19,21 @@ app.use("/api/events", eventRoutes);
 app.use("/api/availability", availabilityRoutes);
 app.use("/api/book", bookingRoutes);
 app.use("/api/bookings",bookingsRoutes);
-(async()=>
-  {
-     try{
-        await sequelize.sync();
-     console.log(`Databse synchronized successfully`);
-     
-     }catch(error)
-   {         console.log(`Error synchronizing datanase:`,error);
-   }
+console.log("DB URL:", process.env.DATABASE_URL);
 
- })();
+(async () => {
+  try {
+    await sequelize.authenticate();
+    console.log(`Database connected successfully ✅`);
+
+    app.listen(PORT, () => {
+      console.log(`Server running on http://localhost:${PORT}`);
+    });
+
+  } catch (error) {
+    console.log(`Error connecting database:`, error);
+  }
+})();
  Availability.hasMany(AvailabilitySlot, {
   foreignKey: "availabilityId",
   onDelete: "CASCADE",
@@ -39,6 +43,3 @@ AvailabilitySlot.belongsTo(Availability, {
   foreignKey: "availabilityId",
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});

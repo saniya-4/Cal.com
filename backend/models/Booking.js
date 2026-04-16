@@ -14,10 +14,14 @@ const Booking = sequelize.define("Booking", {
 
   startTime: { type: DataTypes.TIME, allowNull: false },
   endTime: { type: DataTypes.TIME, allowNull: false },
+
   status: {
-  type: DataTypes.STRING,
-  defaultValue: "upcoming", // upcoming | cancelled | completed
-},
+    type: DataTypes.STRING,
+    defaultValue: "upcoming",
+  },
+}, {
+  tableName: "bookings",   // ✅ THIS FIXES YOUR ERROR
+  timestamps: true
 });
 
 module.exports = Booking;
