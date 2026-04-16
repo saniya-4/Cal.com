@@ -138,28 +138,29 @@ function BookingPage() {
 
   const generatedSlots = generateTimeSlots(selectedDate);
 
-  const handleBooking = async () => {
-    try {
-      const dateStr = selectedDate.toISOString().split("T")[0];
+   const handleBooking = async () => {
+  try {
+    const dateStr = selectedDate.toISOString().split("T")[0];
 
-      await axios.post(
-  `${import.meta.env.VITE_API_URL}/api/book`
-), {
+    await axios.post(
+      `${import.meta.env.VITE_API_URL}/api/book`,
+      {
         eventId: event.id,
         name,
         email,
         date: dateStr,
         startTime: selectedSlot.start,
         endTime: selectedSlot.end,
-      };
-      alert("✅ Booking successful! Email sent");
+      }
+    );
 
-      setBookingSuccess(true);
-    } catch (err) {
-      alert(err.response?.data?.message || "Error booking");
-    }
-  };
-
+    alert("✅ Booking successful! Email sent");
+    setBookingSuccess(true);
+  } catch (err) {
+    console.error("BOOKING ERROR:", err);
+    alert(err.response?.data?.message || "Error booking");
+  }
+};
   // 🔥 CALENDAR
   const getDays = () => {
     const year = currentMonth.getFullYear();
