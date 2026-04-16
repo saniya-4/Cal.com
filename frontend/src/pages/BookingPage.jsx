@@ -70,7 +70,7 @@ function BookingPage() {
     const fetchEvent = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/api/events/slug/${slug}`,
+          `${import.meta.env.VITE_API_URL}/api/events/slug/${slug}`,
         );
         setEvent(res.data);
       } catch (err) {
@@ -142,14 +142,16 @@ function BookingPage() {
     try {
       const dateStr = selectedDate.toISOString().split("T")[0];
 
-      await axios.post("http://localhost:5000/api/book", {
+      await axios.post(
+  `${import.meta.env.VITE_API_URL}/api/book`
+), {
         eventId: event.id,
         name,
         email,
         date: dateStr,
         startTime: selectedSlot.start,
         endTime: selectedSlot.end,
-      });
+      };
       alert("✅ Booking successful! Email sent");
 
       setBookingSuccess(true);
@@ -267,7 +269,6 @@ function BookingPage() {
                       transition: "all 0.2s ease",
                     }}
                     onClick={() => changeMonth(-1)}
-                    
                   >
                     ‹
                   </button>

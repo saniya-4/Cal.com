@@ -12,7 +12,9 @@ function BookingsPage() {
 
   const fetchBookings = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/bookings");
+      const res = await axios.get(
+  `${import.meta.env.VITE_API_URL}/api/bookings`
+);
       setBookings(res.data);
     } catch (err) {
       console.error(err);
@@ -42,7 +44,9 @@ function BookingsPage() {
 
   const cancelBooking = async (id) => {
     try {
-      await axios.put(`http://localhost:5000/api/bookings/cancel/${id}`);
+      await axios.put(
+  `${import.meta.env.VITE_API_URL}/api/bookings/cancel/${id}`
+);
       fetchBookings();
     } catch (err) {
       console.error(err);
