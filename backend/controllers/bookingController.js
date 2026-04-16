@@ -206,11 +206,16 @@ exports.createBooking = async (req, res) => {
     `;
 
     // 🔥 send email FIRST
-    await sendEmail({
-      to: `${email}, ${hostEmail}`,
-      subject: `Meeting Scheduled: ${event.title}`,
-      html: emailHTML,
-    });
+    try {
+  await sendEmail({
+    to: `${email}, ${hostEmail}`,
+    subject: `Meeting Scheduled: ${event.title}`,
+    html: emailHTML,
+  });
+  console.log("✅ Email sent");
+} catch (emailErr) {
+  console.error("❌ Email failed:", emailErr.message);
+}
 
     console.log("✅ Email sent");
 
