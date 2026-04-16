@@ -1,0 +1,25 @@
+### Create Event
+POST http://localhost:5000/api/events
+Content-Type: application/json
+
+{
+  "title": "First Task Submission",
+  "description": "A quick discussion around 20 min",
+  "duration": 15
+}
+
+###
+POST http://localhost:5000/api/availability
+Content-Type: application/json
+
+{
+  "eventId": 1,
+  "timezone": "Asia/Kolkata",
+  "slots": [
+    {
+      "day": "Monday",
+      "startTime": "09:00",
+      "endTime": "12:00"
+    }
+  ]
+}
