@@ -205,16 +205,19 @@ exports.createBooking = async (req, res) => {
       <p><b>Meeting Link:</b> ${meetingLink}</p>
     `;
 
-    // 🔥 send email FIRST
-    // await sendEmail({
-    //   to: `${email}, ${hostEmail}`,
-    //   subject: `Meeting Scheduled: ${event.title}`,
-    //   html: emailHTML,
-    // });
+    
+    try {
+  await sendEmail({
+    to: `${email}, ${hostEmail}`,
+    subject: `Meeting Scheduled: ${event.title}`,
+    html: emailHTML,
+  });
+  console.log("✅ Email sent");
+} catch (err) {
+  console.log("⚠️ Email failed:", err.message);
+}
 
-    // console.log("✅ Email sent");
-
-    // ✅ THEN send response
+    
     res.json({
       message: "Booking confirmed & email sent",
       booking,
