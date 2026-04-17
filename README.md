@@ -33,7 +33,7 @@ npm start
 cd frontend
 npm install
 Create .env file in frontend:
-VITE_API_URL=http://localhost:5000
+VITE_API_URL=https://cal-1gfdc9ecf-saniyas-projects-ddb842a7.vercel.app/
 Run frontend:
 npm run dev
 🌐 Deployment
