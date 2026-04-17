@@ -10,7 +10,15 @@ const Availability = require("./models/Availability");
 const AvailabilitySlot = require("./models/AvailabilitySlot");
 const PORT = process.env.PORT || 5000;
 const bookingRoutes = require("./routes/bookingRoutes");
-app.use(cors());
+// app.use(cors());
+
+//new change 
+app.use(cors({
+  origin: "https://cal-1gfdc9ecf-saniyas-projects-ddb842a7.vercel.app",
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+}));
+app.options("*", cors());
 app.use(express.json());
 app.get("/", (req, res) => {
   res.json({ message: "Backend is running with Express.js" });
