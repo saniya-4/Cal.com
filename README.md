@@ -17,8 +17,8 @@ Prevent double bookings
 Email notification (optional / async)
 ⚙️ Setup Instructions
 1. Clone the repository
-git clone <your-repo-url>
-cd <project-folder>
+git clone https://github.com/saniya-4/Cal.com
+cd CAL.COM CLONE
 2. Backend Setup
 cd backend
 npm install
