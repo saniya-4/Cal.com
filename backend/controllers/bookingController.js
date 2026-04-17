@@ -180,42 +180,33 @@ exports.createBooking = async (req, res) => {
     const event = await EventType.findByPk(eventId);
 
     // 👤 host
-    const hostName = "Saniya Garg";
-    const hostEmail = "gargsaniya192@gmail.com";
+    // const hostName = "Saniya Garg";
+    // const hostEmail = "gargsaniya192@gmail.com";
 
-    // 🔗 meeting link
-    const meetingLink = `http://localhost:3000/meeting/${booking.id}`;
+    // // 🔗 meeting link
+    // const meetingLink = `http://localhost:3000/meeting/${booking.id}`;
 
-    // ✉️ email
-    const emailHTML = `
-      <h2>New Meeting Scheduled</h2>
+    // // ✉️ email
+    // const emailHTML = `
+    //   <h2>New Meeting Scheduled</h2>
 
-      <p><b>What:</b> ${event.title} between ${hostName} and ${name}</p>
+    //   <p><b>What:</b> ${event.title} between ${hostName} and ${name}</p>
 
-      <p><b>When:</b> ${date} | ${startTime} - ${endTime}</p>
+    //   <p><b>When:</b> ${date} | ${startTime} - ${endTime}</p>
 
-      <p><b>Who:</b></p>
-      <ul>
-        <li>${hostName} (Host) - ${hostEmail}</li>
-        <li>${name} - ${email}</li>
-      </ul>
+    //   <p><b>Who:</b></p>
+    //   <ul>
+    //     <li>${hostName} (Host) - ${hostEmail}</li>
+    //     <li>${name} - ${email}</li>
+    //   </ul>
 
-      <p><b>Where:</b> Cal Video</p>
+    //   <p><b>Where:</b> Cal Video</p>
 
-      <p><b>Meeting Link:</b> ${meetingLink}</p>
-    `;
+    //   <p><b>Meeting Link:</b> ${meetingLink}</p>
+    // `;
 
     
-    try {
-  await sendEmail({
-    to: `${email}, ${hostEmail}`,
-    subject: `Meeting Scheduled: ${event.title}`,
-    html: emailHTML,
-  });
-  console.log("✅ Email sent");
-} catch (err) {
-  console.log("⚠️ Email failed:", err.message);
-}
+
 
     
     res.json({
